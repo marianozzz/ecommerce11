@@ -333,59 +333,34 @@ return [
             'url' => 'admin/settings',
             'icon' => 'fas fa-fw fa-lock',
         ],
-        [
-            'text' => 'multilevel',
-            'icon' => 'fas fa-fw fa-share',
-            'submenu' => [
-                [
-                    'text' => 'level_one',
-                    'url' => '#',
-                ],
-                [
-                    'text' => 'level_one',
-                    'url' => '#',
-                    'submenu' => [
-                        [
-                            'text' => 'level_two',
-                            'url' => '#',
-                        ],
-                        [
-                            'text' => 'level_two',
-                            'url' => '#',
-                            'submenu' => [
-                                [
-                                    'text' => 'level_three',
-                                    'url' => '#',
-                                ],
-                                [
-                                    'text' => 'level_three',
-                                    'url' => '#',
-                                ],
-                            ],
-                        ],
-                    ],
-                ],
-                [
-                    'text' => 'level_one',
-                    'url' => '#',
-                ],
-            ],
-        ],
+       
         ['header' => 'labels'],
         [
             'text' => 'Categorias',
-            'icon_color' => 'red',
+            'icon' => 'fas fa-tags',
             'url' => 'categorias',
         ],
         [
             'text' => 'Productos',
-            'icon_color' => 'yellow',
+            'icon' => 'fas fa-box',
             'url' => 'admin/productos',
         ],
         [
             'text' => 'information',
             'icon_color' => 'cyan',
             'url' => '#',
+        ],
+
+        ['header' => 'REGIONES'],
+        [
+            'text' => 'Provincias',
+            'icon' => 'fas fa-map-marker-alt', // Icono que quieras usar
+            'url' => 'admin/provincias', // Ruta para gestionar provincias
+        ],
+        [
+            'text' => 'Ciudades',
+            'icon' => 'fas fa-city', // Icono que quieras usar
+            'url' => 'admin/ciudades', // Ruta para gestionar ciudades
         ],
     ],
 

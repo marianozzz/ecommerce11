@@ -3,14 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use MercadoPago\SDK;
-use MercadoPago\Preference;
 use MercadoPago\Item;
-
-use MercadoPago\Client\Common\RequestOptions;
-use MercadoPago\Client\Payment\PaymentClient;
-use MercadoPago\Exceptions\MPApiException;
 use MercadoPago\MercadoPagoConfig;
+//use MercadoPago\PreferenceClient;
+use MercadoPago\Client\Preference\PreferenceClient;
 
 class PaymentController extends Controller
 {
@@ -19,36 +15,51 @@ class PaymentController extends Controller
         // Configura el Access Token de MercadoPago
     
        MercadoPagoConfig::setAccessToken(env('MERCADO_PAGO_ACCESS_TOKEN'));
+    
+ // Obteniendo los datos del carrito desde la sesión
+ $cartItems = session('cart');
+ $items = [];
 
-        // Crea un objeto de preferencia
-        $preference = new Preference();
+ // Si el carrito no está vacío, mapear los datos al array de MercadoPago
+ if ($cartItems) {
+     foreach ($cartItems as $id => $detalle) {
+         $items[] = [
+             "id" => $id,                                    // ID del producto
+             "title" => $detalle['nombre'],                   // Nombre del producto
+             "description" => $detalle['nombre'],             // Descripción (puede personalizarse)
+             "picture_url" => asset('storage/' . $detalle['imagen']), // URL de la imagen del producto
+             "category_id" => "electronics",                  // ID de la categoría (puedes ajustar)
+             "quantity" => $detalle['cantidad'],              // Cantidad de productos
+             "currency_id" => "PESO",                          // Moneda (ajústala según tu necesidad)
+             "unit_price" => $detalle['precio']               // Precio unitario del producto
+         ];
+     }
+ }
 
-        // Crea un ítem en la preferencia (esto representa el producto)
-        $item = new Item();
-        $item->title = $request->input('title');  // El título del producto
-        $item->quantity = $request->input('quantity');  // La cantidad
-        $item->unit_price = (float)$request->input('price');  // El precio por unidad
-
-        // Añadimos el ítem a la preferencia
-        $preference->items = [$item];
-
-        // Puedes agregar la URL de redireccionamiento después del pago
-        $preference->back_urls = [
-            'success' => route('pago.exito'),  // Ruta a donde redirigir después del pago exitoso
-            'failure' => route('pago.fallo'),  // Ruta a donde redirigir si el pago falla
-            'pending' => route('pago.pendiente') // Ruta para pagos pendientes
-        ];
-
-        // Definir que queremos que redirija automáticamente en éxito
-        $preference->auto_return = 'approved';
-
-        // Guardamos la preferencia
-        $preference->save();
-
-        // Devolver la URL de pago o un ID de preferencia
-        return response()->json([
-            'init_point' => $preference->init_point,  // URL de MercadoPago para redirigir al cliente
-            'preference_id' => $preference->id
-        ]);
+       $client = new PreferenceClient();
+       $preference = $client->create([
+       "back_urls"=>array(
+           "success" => "http://test.com/success",
+           "failure" => "http://test.com/failure",
+           "pending" => "http://test.com/pending"
+       ),
+       "items" => array(
+           array(
+               "id" => "1234",
+               "title" => "Dummy Title",
+               "description" => "Dummy description",
+               "picture_url" => "http://www.myapp.com/myimage.jpg",
+               "category_id" => "car_electronics",
+               "quantity" => 2,
+               "currency_id" => "BRL",
+               "unit_price" => 100
+           )
+       ),
+     
+       ]);
+       
+      // dd($items);
+       dd($preference);
+       echo implode($preference);
     }
 }

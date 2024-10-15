@@ -2,11 +2,22 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CategoriaController;
+use App\Http\Controllers\Admin\ProvinciaController;
+use App\Http\Controllers\Admin\CiudadController;
 use App\Http\Controllers\Admin\ProductoController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\PerfilController;
 
 
+Route::prefix('admin')->name('admin.')->group(function() {
+    Route::resource('provincias', App\Http\Controllers\Admin\ProvinciaController::class);
+});
+
+Route::prefix('admin')->name('admin.')->group(function() {
+    Route::resource('provincias', App\Http\Controllers\Admin\ProvinciaController::class);
+    Route::resource('ciudades', App\Http\Controllers\Admin\CiudadController::class);
+});
 Route::resource('cart', CartController::class);
 
 Route::get('/', [ProductController::class, 'index'])->name('home');
@@ -32,12 +43,14 @@ Route::resource('categorias', \App\Http\Controllers\Admin\CategoriaController::c
 
 Auth::routes();
 
-//Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('/profile', function () {
-    // Aquí va la lógica de la vista de perfil
-    return view('profile');
-})->name('profile');
+
+// Ruta resource para el perfil de usuario
+Route::resource('profile', PerfilController::class);
+
+Route::get('/provincias/{provincia_id}/ciudades', [PerfilController::class, 'getCiudades']);
+
+            
 
 Route::post('/cart/add/{id}', [App\Http\Controllers\CartController::class, 'add'])->name('cart.add');
 Route::delete('/cart/remove/{id}', [App\Http\Controllers\CartController::class, 'remove'])->name('cart.remove');

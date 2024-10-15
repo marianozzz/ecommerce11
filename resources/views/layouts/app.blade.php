@@ -23,11 +23,20 @@
                         <a class="nav-link" href="{{ route('cart.index') }}">Ver Carrito</a>
                     </li>
                     @auth
-                        <li class="nav-item">
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-inline">
-                                @csrf
-                                <button type="submit" class="btn btn-link nav-link">Cerrar sesión</button>
-                            </form>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                {{ auth()->user()->name }} <!-- Nombre del usuario logueado -->
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="{{ route('profile.index') }}">Mi perfil</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li>
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-inline">
+                                        @csrf
+                                        <button type="submit" class="dropdown-item">Cerrar sesión</button>
+                                    </form>
+                                </li>
+                            </ul>
                         </li>
                     @endauth
                     @guest
