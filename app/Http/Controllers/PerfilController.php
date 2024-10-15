@@ -20,7 +20,28 @@ class PerfilController extends Controller
     
         return view('usuarios.index', compact('perfil'));
     }
+     // Almacenar un nuevo perfil
+     public function store(Request $request)
+     {
+        
+         // Validar los datos
+         $request->validate([
+             'direccion' => 'required|string|max:255',
+             'provincia_id' => 'required|exists:provincias,id',
+             'ciudad_id' => 'required|exists:ciudades,id',
+         ]);
  
+         // Crear el perfil asociado al usuario autenticado
+         Perfil::create([
+             'user_id' => Auth::id(),
+             'direccion' => $request->direccion,
+             'provincia_id' => $request->provincia_id,
+             'ciudad_id' => $request->ciudad_id,
+         ]);
+ 
+         // Redirigir a la vista del perfil con un mensaje de éxito
+         return redirect()->route('profile.index')->with('success', 'Perfil creado correctamente.');
+     }
     public function create()
         {
             // Obtiene todas las provincias de la base de datos

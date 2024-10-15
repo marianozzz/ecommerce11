@@ -31,25 +31,27 @@
     </div>
 
     <script>
-        // Puedes agregar aquí la lógica para llenar el select de ciudades
-        document.getElementById('provincia_id').addEventListener('change', function() {
-            const provinciaId = this.value;
+    document.getElementById('provincia_id').addEventListener('change', function() {
+    let provinciaId = this.value;
+    if (provinciaId) {
+        fetch(`/ciudades/${provinciaId}`)
+            .then(response => response.json())
+            .then(data => {
+                let ciudadesSelect = document.getElementById('ciudad_id');
+                ciudadesSelect.innerHTML = ''; // Limpiar el select antes de agregar nuevas ciudades
 
-            // Realiza una solicitud AJAX para obtener las ciudades de la provincia seleccionada
-            fetch(`/ciudades/${provinciaId}`)
-                .then(response => response.json())
-                .then(data => {
-                    const ciudadSelect = document.getElementById('ciudad_id');
-                    ciudadSelect.innerHTML = '<option value="">Seleccione una ciudad</option>'; // Limpiar ciudades anteriores
-
-                    // Agrega las ciudades al select
-                    data.ciudades.forEach(ciudad => {
-                        const option = document.createElement('option');
-                        option.value = ciudad.id;
-                        option.textContent = ciudad.nombre;
-                        ciudadSelect.appendChild(option);
-                    });
+                // Iterar directamente sobre el array de ciudades devuelto
+                data.forEach(ciudad => {
+                    let option = document.createElement('option');
+                    option.value = ciudad.id;
+                    option.text = ciudad.nombre;
+                    ciudadesSelect.appendChild(option);
                 });
-        });
+            })
+            .catch(error => console.error('Error al obtener las ciudades:', error));
+    }
+});
+
+
     </script>
 @endsection

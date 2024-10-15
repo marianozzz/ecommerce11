@@ -8,6 +8,7 @@
 
         <form action="{{ route('admin.ciudades.store') }}" method="POST">
             @csrf
+           
             <div class="mb-3">
                 <label for="nombre" class="form-label">Nombre de la Ciudad</label>
                 <input type="text" class="form-control" id="nombre" name="nombre" value="{{ old('nombre') }}" required>

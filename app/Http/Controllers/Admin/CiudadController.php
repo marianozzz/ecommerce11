@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
@@ -75,4 +74,12 @@ class CiudadController extends Controller
 
         return redirect()->route('admin.ciudades.index')->with('success', 'Ciudad eliminada correctamente.');
     }
+  
+
+    public function getCiudades($provinciaId)
+    {
+        $ciudades = Ciudad::where('provincia_id', $provinciaId)->get();
+        return response()->json($ciudades); // Devolver el array de ciudades directamente
+    }
+    
 }
