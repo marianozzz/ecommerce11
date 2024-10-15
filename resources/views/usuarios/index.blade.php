@@ -24,7 +24,7 @@
                             <td>{{ $perfil->ciudad->nombre ?? 'Sin completar' }}</td>
                         </tr>
                     </table>
-                    <a href="{{ route('profile.edit', $perfil->id) }}" class="btn btn-primary">Editar Perfil</a>
+                    <a href="{{ route('profile.edit',$perfil)}}" class="btn btn-primary">Editar Perfil</a>
                 @else
                     <div class="alert alert-warning">
                         No has completado tu perfil. <a href="{{ route('profile.create') }}" class="btn btn-success">Completar Perfil</a>
