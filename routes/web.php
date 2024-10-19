@@ -10,7 +10,11 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\PerfilController;
 use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\Admin\VentaController;
 
+use App\Http\Controllers\User\CompraController;
+
+Route::resource('compras', CompraController::class)->middleware('auth');
 
 Route::prefix('admin')->name('admin.')->group(function() {
     Route::resource('provincias', App\Http\Controllers\Admin\ProvinciaController::class);
@@ -30,7 +34,9 @@ Route::prefix('admin')->name('admin.')->group(function () {
 Route::resource('categorias', \App\Http\Controllers\Admin\CategoriaController::class);
     });
 
-Route::resource('cart', CartController::class);
+
+Route::resource('cart', CartController::class)->middleware('auth');
+
 
 Route::get('/ciudades/{provinciaId}', [CiudadController::class, 'getCiudades']);
 
@@ -62,3 +68,9 @@ Route::get('pago', [PaymentController::class, 'createPreference'])->name('paymen
 Route::get('pago/exito', [PaymentController::class, 'success'])->name('payment.success');
 Route::get('pago/fallo', [PaymentController::class, 'failure'])->name('payment.failure');
 Route::get('pago/pendiente', [PaymentController::class, 'pending'])->name('payment.pending');
+
+
+Route::prefix('admin')->name('admin.')->group(function () {
+    Route::resource('ventas', \App\Http\Controllers\Admin\VentaController::class);
+});
+

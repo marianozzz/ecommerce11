@@ -14,6 +14,7 @@ class ProductController extends Controller
     {
         // Obtener los productos con paginación
         $products = Producto::paginate(9); // Cambia '9' por la cantidad de productos que deseas mostrar por página
+      // dd($products);
         return view('home', compact('products'));
     }
     

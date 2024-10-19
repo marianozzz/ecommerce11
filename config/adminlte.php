@@ -110,7 +110,7 @@ return [
     */
 
     'preloader' => [
-        'enabled' => true,
+        'enabled' => false,
         'mode' => 'fullscreen',
         'img' => [
             'path' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
@@ -333,7 +333,13 @@ return [
             'url' => 'admin/settings',
             'icon' => 'fas fa-fw fa-lock',
         ],
-       
+        ['header' => 'VENTAS'],
+        [
+            'text' => 'Ventas',
+            'icon' => 'fas fa-dollar-sign', // Icono de caja registradora
+            'url' => 'admin/ventas', // Ruta para gestionar ventas
+        ],
+        
         ['header' => 'labels'],
         [
             'text' => 'Categorias',
@@ -362,6 +368,7 @@ return [
             'icon' => 'fas fa-city', // Icono que quieras usar
             'url' => 'admin/ciudades', // Ruta para gestionar ciudades
         ],
+        
     ],
 
     /*
