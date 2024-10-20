@@ -39,8 +39,7 @@ class CompraController extends Controller
             $venta->save();
 
             // Insertar los detalles de la venta
-           // dd($carrito);
-            //dd($venta->id);
+         
             foreach ($carrito as $item) {
                 $detalleVenta = new DetalleVenta();
                 $detalleVenta->venta_id = $venta->id;
@@ -59,7 +58,9 @@ class CompraController extends Controller
             session()->forget('carrito');
 
             return redirect()->route('ventas.index')->with('success', 'Compra realizada con éxito.');
-        } catch (\Exception $e) {
+        } 
+        catch (\Exception $e) 
+        {
             // Revertir la transacción en caso de error
             DB::rollBack();
             return redirect()->back()->with('error', 'Ocurrió un error al procesar la compra.');

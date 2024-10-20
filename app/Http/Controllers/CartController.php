@@ -25,7 +25,7 @@ class CartController extends Controller
         {
             // Si no está en el carrito, lo añadimos con cantidad 1
             $cart[$id] = [
-                "id" => $id,
+                "id" => $id, //Id del cliente
                 "nombre" => $producto->nombre,
                 "cantidad" => 1,
                 "precio" => $producto->precio,
