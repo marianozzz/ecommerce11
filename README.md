@@ -35,6 +35,11 @@ MySQL: Base de datos para almacenar usuarios, productos, ventas, y otros datos.
 Bootstrap: Framework CSS para un diseño responsivo.
 AdminLTE: Tema de administración basado en Bootstrap para la gestión del backend.
 Font Awesome: Íconos para mejorar la interfaz de usuario.
+
+Uso
+Los usuarios pueden registrarse e iniciar sesión para comenzar a comprar productos.
+Los administradores tienen acceso a un panel de control donde pueden gestionar productos y ventas.
+Los usuarios pueden agregar productos al carrito, revisar su contenido y finalizar la compra.
 TDD: Desarrollo basado en pruebas para asegurar la calidad del código.
 Requisitos del Sistema
 PHP >= 8.1
