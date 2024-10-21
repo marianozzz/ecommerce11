@@ -5,9 +5,6 @@
 @section('content')
 <div class="container mt-5">
     <h1 class="text-center mb-5">Bienvenido a Nuestra Tienda</h1>
-    
-    <!-- Mostrar botón de inicio de sesión o perfil según el estado de autenticación -->
-  
 
     <!-- Mostrar productos destacados si existen -->
     @if($products->isEmpty())
@@ -19,8 +16,8 @@
             @foreach($products as $product)
                 <div class="col-md-2">
                     <div class="card mb-2">
-                        <!-- Imagen del producto -->
-                        <img src="{{ asset('storage/' . $product->imagen) }}" class="card-img-top" alt="{{ $product->nombre }}">
+                        <!-- Imagen del producto con tamaño fijo -->
+                        <img src="{{ asset('storage/' . $product->imagen) }}" class="card-img-top img-fixed" alt="{{ $product->nombre }}">
 
                         <div class="card-body">
                             <!-- Nombre del producto -->
@@ -46,4 +43,13 @@
         </div>
     @endif
 </div>
+
+<!-- Estilos CSS para las imágenes -->
+<style>
+    .img-fixed {
+        width: 100%;
+        height: 200px; /* Ajusta el alto según prefieras */
+        object-fit: cover; /* Mantiene la proporción de la imagen pero la recorta para llenar el espacio */
+    }
+</style>
 @endsection

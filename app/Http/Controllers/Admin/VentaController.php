@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Models\DetalleVenta;
+use App\Models\Producto;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 
 
@@ -19,10 +21,23 @@ class VentaController extends Controller
         return view('admin.ventas.index', compact('ventas'));
     }
 
+
+    public function generarFactura($id)
+    {
+        // Obtener la venta por ID
+        $venta = Venta::findOrFail($id);
+    
+        // Pasar los datos a la vista de la factura
+        $pdf = Pdf::loadView('admin.ventas.factura_pdf', compact('venta'));
+    
+        // Descargar el PDF con el nombre de la venta
+        return $pdf->download('factura_venta_' . $venta->id . '.pdf');
+    }
+    
     public function create()
     {
        
-        $articulos = Articulo::all();
+        $articulos = Producto::all();
 
         return view('admin.ventas.create', compact('articulos'));
     }

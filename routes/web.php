@@ -29,6 +29,8 @@ Route::prefix('admin')->name('admin.')->
 Route::prefix('admin')->group(function () {
     Route::resource('productos', ProductoController::class)->names('admin.productos');
 });
+// Rutas para ventas
+Route::get('ventas/factura/{id}', [VentaController::class, 'generarFactura'])->name('admin.ventas.factura');
 
 Route::prefix('admin')->name('admin.')->group(function () {
 Route::resource('categorias', \App\Http\Controllers\Admin\CategoriaController::class);
