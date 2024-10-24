@@ -6,6 +6,13 @@
     <div class="container mt-5">
         <h1 class="text-center">Carrito de Compras</h1>
 
+        <!-- Mostrar mensaje de éxito -->
+        @if(session('success'))
+            <div class="alert alert-success text-center">
+                {{ session('success') }}
+            </div>
+        @endif
+
         @auth
             @if(session('cart'))
                 @php
@@ -25,7 +32,6 @@
                         </tr>
                     </thead>
                     <tbody>
-                       
                         @foreach(session('cart') as $id => $detalle)
                             @php
                                 $totalProducto = $detalle['precio'] * $detalle['cantidad'];
@@ -62,12 +68,10 @@
                                 <td><strong>${{ number_format($subtotal, 2) }}</strong></td>
                             </tr>
                         </table>
-                      <!--  <a href="{{ route('payment.create') }}" class="btn btn-primary btn-block">Finalizar Compra</a> -->
-                      <form action="{{ route('compras.store') }}" method="POST">
-                        @csrf
-                        <button type="submit" class="btn btn-primary">Finalizar Compra</button>
-                     </form>
-
+                        <form action="{{ route('compras.store') }}" method="POST">
+                            @csrf
+                            <button type="submit" class="btn btn-primary">Finalizar Compra</button>
+                        </form>
                     </div>
                 </div>
 

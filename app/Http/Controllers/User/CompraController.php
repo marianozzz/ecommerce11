@@ -55,9 +55,9 @@ class CompraController extends Controller
             DB::commit();
 
             // Limpiar el carrito después de la compra
-            session()->forget('carrito');
-
-            return redirect()->route('ventas.index')->with('success', 'Compra realizada con éxito.');
+            session()->forget('cart');
+            return redirect()->route('cart.index')->with('success', 'Compra realizada con éxito. ¡Gracias por tu compra!');
+           // return redirect()->route('ventas.index')->with('success', 'Compra realizada con éxito.');
         } 
         catch (\Exception $e) 
         {

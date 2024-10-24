@@ -38,39 +38,6 @@ class CartController extends Controller
         //dd($cart);
         return redirect()->back()->with('success', 'Producto agregado al carrito');
     }
-/*
- public function add(Request $request)
-{
-    //dd($request);
-    $cart = session()->get('cart');
-  //  dd($cart);
-    if (!$cart || count($cart) == 0) {
-        return redirect()->back()->with('error', 'El carrito está vacío.');
-    }
-
-    // Crear una nueva venta
-    $venta = new Venta();
-    $venta->user_id = auth()->id(); // El usuario que realizó la compra
-    $venta->total = collect($cart)->sum(function($detalle) {
-        return $detalle['precio'] * $detalle['cantidad'];
-    });
-    $venta->fecha = now();
-    $venta->save();
-
-    // Insertar los detalles de la venta
-    foreach ($cart as  $detalle) {
-        $venta->detalles()->create([
-          //  'id' => $detalle['id'],
-            'cantidad' => $detalle['cantidad'],
-            'precio' => $detalle['precio']
-        ]);
-    }
-
-    // Vaciar el carrito
-    session()->forget('cart');
-
-    return redirect()->route('cart.index')->with('success', 'Compra realizada con éxito.');
-}*/
 
 
     // Función para mostrar el contenido del carrito
