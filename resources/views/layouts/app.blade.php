@@ -35,9 +35,16 @@
                                 <i class="fas fa-user"></i> {{ auth()->user()->name }}
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="{{ route('profile.index') }}">
-                                    <i class="fas fa-user-circle"></i> Mi perfil
-                                </a></li>
+                                <li>
+                                    <a class="dropdown-item" href="{{ route('profile.index') }}">
+                                        <i class="fas fa-user-circle"></i> Mi perfil
+                                    </a>
+                                </li>
+                                <li>
+                                 <a class="dropdown-item" href="{{ route('compras.index') }}">Historial de Compras</a>
+                                </li>
+                                
+
                                 <li><hr class="dropdown-divider"></li>
                                 <li>
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-inline">

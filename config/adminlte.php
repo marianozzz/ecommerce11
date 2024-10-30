@@ -325,12 +325,12 @@ return [
         ['header' => 'Cuentas de Usuarios'],
         [
             'text' => 'profile',
-            'url' => 'admin/settings',
+            'url' => '',
             'icon' => 'fas fa-fw fa-user',
         ],
         [
             'text' => 'change_password',
-            'url' => 'admin/settings',
+            'url' => '',
             'icon' => 'fas fa-fw fa-lock',
         ],
         ['header' => 'VENTAS'],
@@ -367,6 +367,14 @@ return [
             'text' => 'Ciudades',
             'icon' => 'fas fa-city', // Icono que quieras usar
             'url' => 'admin/ciudades', // Ruta para gestionar ciudades
+        ],
+        [
+            'header' => 'CONFIGURACIÓN DEL SITIO',
+        ],
+        [
+            'text' => 'Configurar Sitio',
+            'icon' => 'fas fa-cogs', // Icono de engranaje para configuraciones
+            'url' => 'admin/settings', // Ruta para la página de configuración del sitio
         ],
         
     ],

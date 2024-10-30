@@ -5,13 +5,20 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\ProvinciaController;
 use App\Http\Controllers\Admin\CiudadController;
 use App\Http\Controllers\Admin\ProductoController;
+use App\Http\Controllers\Admin\SiteSettingController;
+use App\Http\Controllers\Admin\VentaController;
+use App\Http\Controllers\Admin\AdminController;
+
+
+
+
+
+
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\PerfilController;
 use App\Http\Controllers\PaymentController;
-use App\Http\Controllers\Admin\VentaController;
-
 use App\Http\Controllers\User\CompraController;
 
 Route::resource('compras', CompraController::class)->middleware('auth');
@@ -20,15 +27,18 @@ Route::prefix('admin')->name('admin.')->group(function() {
     Route::resource('provincias', App\Http\Controllers\Admin\ProvinciaController::class);
 });
 
+Route::resource('admin/settings', SiteSettingController::class)->only(['index', 'edit', 'update']);
+Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
 Route::prefix('admin')->name('admin.')->
        group(function() {
        Route::resource('provincias', App\Http\Controllers\Admin\ProvinciaController::class);
        Route::resource('ciudades', App\Http\Controllers\Admin\CiudadController::class);
 });
-
 Route::prefix('admin')->group(function () {
     Route::resource('productos', ProductoController::class)->names('admin.productos');
 });
+
+
 // Rutas para ventas
 Route::get('ventas/factura/{id}', [VentaController::class, 'generarFactura'])->name('admin.ventas.factura');
 
@@ -38,8 +48,6 @@ Route::resource('categorias', \App\Http\Controllers\Admin\CategoriaController::c
 
 
 Route::resource('cart', CartController::class)->middleware('auth');
-
-
 Route::get('/ciudades/{provinciaId}', [CiudadController::class, 'getCiudades']);
 
 
@@ -76,3 +84,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::resource('ventas', \App\Http\Controllers\Admin\VentaController::class);
 });
 
+Route::middleware('auth')->group(function () {
+    Route::get('historial-compras', [CompraController::class, 'index'])->name('compras.index');
+    Route::get('historial-compras/{compra}', [CompraController::class, 'show'])->name('compras.show');
+});

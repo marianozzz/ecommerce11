@@ -123,4 +123,11 @@ return [
         'store' => env('APP_MAINTENANCE_STORE', 'database'),
     ],
 
+    'store' => [
+    'name' => env('STORE_NAME', 'Nombre de la Tienda por Defecto'),
+    'address' => env('STORE_ADDRESS', 'Dirección por Defecto'),
+    'phone' => env('STORE_PHONE', 'Teléfono por Defecto'),
+],
+
+
 ];
