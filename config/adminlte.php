@@ -322,16 +322,22 @@ return [
             'label' => 4,
             'label_color' => 'success',
         ],
-        ['header' => 'Cuentas de Usuarios'],
         [
-            'text' => 'profile',
-            'url' => '',
+            'header' => 'Cuentas de Usuarios',
+        ],
+        [
+            'text' => 'Usuarios',
+            'route'  => 'admin.usuarios.index', // URL para listar los usuarios
             'icon' => 'fas fa-fw fa-user',
         ],
         [
-            'text' => 'change_password',
-            'url' => '',
-            'icon' => 'fas fa-fw fa-lock',
+            'header' => 'Roles y Permisos',
+        ],
+        [
+            'text' => 'Roles',
+            'route'  => 'roles.index',
+            'icon' => 'fas fa-user-shield',
+          //  'can'  => 'role:admin',
         ],
         ['header' => 'VENTAS'],
         [
@@ -340,7 +346,7 @@ return [
             'url' => 'admin/ventas', // Ruta para gestionar ventas
         ],
         
-        ['header' => 'labels'],
+        ['header' => 'CONFIGURACION'],
         [
             'text' => 'Categorias',
             'icon' => 'fas fa-tags',
