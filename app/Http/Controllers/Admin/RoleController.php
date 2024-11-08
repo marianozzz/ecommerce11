@@ -24,7 +24,7 @@ class RoleController extends Controller
     public function create()
     {
         $permissions = Permission::all(); // Obtén todos los permisos disponibles
-        return view('roles.create', compact('permissions'));
+        return view('admin.roles.create', compact('permissions'));
     }
 
     /**

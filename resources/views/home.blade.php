@@ -12,25 +12,25 @@
             No hay productos disponibles en este momento.
         </div>
     @else
-        <div class="row">
+        <div class="row justify-content-center">
             @foreach($products as $product)
-                <div class="col-md-2">
-                    <div class="card mb-2">
+                <div class="col-md-3 d-flex align-items-stretch">
+                    <div class="card mb-4 shadow-sm product-card">
                         <!-- Imagen del producto con tamaño fijo -->
                         <img src="{{ asset('storage/' . $product->imagen) }}" class="card-img-top img-fixed" alt="{{ $product->nombre }}">
 
-                        <div class="card-body">
+                        <div class="card-body text-center">
                             <!-- Nombre del producto -->
                             <h5 class="card-title">{{ $product->nombre }}</h5>
 
                             <!-- Descripción del producto (limitada a 100 caracteres) -->
-                            <p class="card-text">{{ \Illuminate\Support\Str::limit($product->descripcion, 100) }}</p>
+                            <p class="card-text text-muted">{{ \Illuminate\Support\Str::limit($product->descripcion, 80) }}</p>
 
                             <!-- Precio del producto -->
-                            <p class="card-text"><strong>Precio:</strong> ${{ number_format($product->precio, 2) }}</p>
+                            <p class="card-text font-weight-bold">Precio: ${{ number_format($product->precio, 2) }}</p>
 
                             <!-- Botón para ver los detalles del producto -->
-                            <a href="{{ route('productos.show', $product->id) }}" class="btn btn-primary">Ver Detalles</a>
+                            <a href="{{ route('productos.show', $product->id) }}" class="btn btn-primary btn-sm">Ver Detalles</a>
                         </div>
                     </div>
                 </div>
@@ -44,12 +44,36 @@
     @endif
 </div>
 
-<!-- Estilos CSS para las imágenes -->
+<!-- Estilos CSS personalizados -->
 <style>
+    /* Fija el tamaño de las imágenes */
     .img-fixed {
         width: 100%;
-        height: 200px; /* Ajusta el alto según prefieras */
-        object-fit: cover; /* Mantiene la proporción de la imagen pero la recorta para llenar el espacio */
+        height: 180px; /* Ajusta el alto según prefieras */
+        object-fit: cover;
+        border-radius: 0.25rem 0.25rem 0 0; /* Redondea las esquinas superiores */
+    }
+
+    /* Estilo uniforme para las tarjetas de producto */
+    .product-card {
+        min-height: 350px; /* Define una altura mínima */
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        border: 1px solid #ddd;
+        border-radius: 0.5rem;
+    }
+
+    /* Estilo del contenido de la tarjeta */
+    .product-card .card-body {
+        padding: 1rem;
+    }
+
+    /* Mejoras en el botón */
+    .btn-primary {
+        margin-top: 0.5rem;
+        font-size: 0.875rem;
     }
 </style>
 @endsection
+

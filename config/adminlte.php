@@ -337,7 +337,13 @@ return [
             'text' => 'Roles',
             'route'  => 'roles.index',
             'icon' => 'fas fa-user-shield',
-          //  'can'  => 'role:admin',
+             //'can'  => 'role:Admin',
+        ],
+        [
+            'text' => 'Permisos',
+            'route' => 'permisos.index',
+            'icon' => 'fas fa-key',
+             //'can' => 'permission:view-permissions',
         ],
         ['header' => 'VENTAS'],
         [

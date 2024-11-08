@@ -42,10 +42,8 @@
                                     </a>
                                 </li>
                                 <li>
-                                 <a class="dropdown-item" href="{{ route('compras.index') }}">Historial de Compras</a>
+                                    <a class="dropdown-item" href="{{ route('compras.index') }}">Historial de Compras</a>
                                 </li>
-                                
-
                                 <li><hr class="dropdown-divider"></li>
                                 <li>
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-inline">
@@ -80,11 +78,41 @@
         @yield('content')
     </div>
 
-    <footer class="footer mt-5 text-center">
-        <p>&copy; 2024 Mi E-Commerce. Todos los derechos reservados.</p>
+    <!-- Footer -->
+    <footer class="footer bg-dark text-white mt-5 pt-4">
+        <div class="container">
+            <div class="row">
+                <!-- Contact Info -->
+                <div class="col-md-4">
+                    <h5>Contacto</h5>
+                    <ul class="list-unstyled">
+                        <li><i class="fas fa-phone"></i> +54 123 456 789</li>
+                        <li><i class="fas fa-envelope"></i> contacto@mi-ecommerce.com</li>
+                    </ul>
+                </div>
+
+                <!-- About Us -->
+                <div class="col-md-4">
+                    <h5>Quiénes Somos</h5>
+                    <p>Somos una tienda dedicada a ofrecer los mejores productos directamente a tu hogar. Nos enorgullece brindar una experiencia de compra fácil y segura.</p>
+                </div>
+
+                <!-- Location with Google Maps -->
+                <div class="col-md-4">
+                    <h5>Dirección</h5>
+                    <p>Av. Principal 123, Santa Clara del Mar</p>
+                    <!-- Google Maps Embed -->
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d201170.11282479248!2d-57.76534528822005!3d-38.01718112759558!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9584d94d19d34209%3A0xdd9670804bfed126!2sMar%20del%20Plata%2C%20Provincia%20de%20Buenos%20Aires!5e0!3m2!1ses-419!2sar!4v1731037321390!5m2!1ses-419!2sar" width="400" height="250" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+            </div>
+            <!-- Footer Bottom -->
+            <div class="text-center py-3 mt-3 border-top">
+                <p>&copy; 2024 Mi E-Commerce. Todos los derechos reservados.</p>
+            </div>
+        </div>
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-@livewireScripts
+    @livewireScripts
 </body>
 </html>

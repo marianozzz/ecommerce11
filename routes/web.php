@@ -10,7 +10,8 @@ use App\Http\Controllers\Admin\VentaController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\UserController;
 
-
+use App\Http\Controllers\Admin\RoleController;
+use App\Http\Controllers\Admin\PermissionController;
 
 
 
@@ -20,10 +21,16 @@ use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\PerfilController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\User\CompraController;
-use App\Http\Controllers\Admin\RoleController;
 
 
-Route::prefix('admin')->group(function () {
+
+Route::prefix('admin/permisos')->group(function () {
+
+Route::resource('permisos',PermissionController::class);
+});
+
+Route::prefix('admin/roles')->group(function () {
+      
     Route::resource('roles', RoleController::class);
 });
 
@@ -31,6 +38,7 @@ Route::resource('compras', CompraController::class)->middleware('auth');
 
 Route::prefix('admin')->name('admin.')->group(function() {
     Route::resource('provincias', App\Http\Controllers\Admin\ProvinciaController::class);
+    
 });
 
 
