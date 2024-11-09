@@ -12,7 +12,7 @@ use App\Http\Controllers\Admin\UserController;
 
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\PermissionController;
-
+use App\Http\Controllers\Admin\ReporteController;
 
 
 use App\Http\Controllers\ProductController;
@@ -23,10 +23,24 @@ use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\User\CompraController;
 
 
+/*
+
+Route::prefix('reportes')->name('admin.reportes.')->group(function () {
+       Route::get('/ventas', [ReporteController::class, 'ventas'])->name('ventas');
+       Route::get('/clientes', [ReporteController::class, 'clientes'])->name('clientes');
+       Route::get('/stock', [ReporteController::class, 'stock'])->name('stock');
+   });*/
+   
+
+
+Route::prefix('admin')->group(function () {
+    Route::resource('reportes', ReporteController::class)->names('admin.reportes');
+});
+
 
 Route::prefix('admin/permisos')->group(function () {
 
-Route::resource('permisos',PermissionController::class);
+       Route::resource('permisos',PermissionController::class);
 });
 
 Route::prefix('admin/roles')->group(function () {
@@ -41,10 +55,7 @@ Route::prefix('admin')->name('admin.')->group(function() {
     
 });
 
-
-
 Route::resource('admin/usuarios', UserController::class)->names('admin.usuarios');
-
 
 Route::resource('admin/settings', SiteSettingController::class)->only(['index', 'edit', 'update']);
 Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
@@ -82,11 +93,8 @@ Route::resource('profile', PerfilController::class);
 
 
 Route::get('/ciudades/{provincia_id}', [CiudadController::class, 'getCiudadesByProvincia']);
-
 Route::get('/ciudades/{provincia}', [CiudadController::class, 'getCiudades']);
-
 Route::get('/provincias/{provincia_id}/ciudades', [PerfilController::class, 'getCiudades']); 
-
 Route::post('/cart/add/{id}', [App\Http\Controllers\CartController::class, 'add'])->name('cart.add');
 Route::delete('/cart/remove/{id}', [App\Http\Controllers\CartController::class, 'remove'])->name('cart.remove');
 

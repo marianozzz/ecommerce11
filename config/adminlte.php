@@ -351,6 +351,11 @@ return [
             'icon' => 'fas fa-dollar-sign', // Icono de caja registradora
             'url' => 'admin/ventas', // Ruta para gestionar ventas
         ],
+        [
+            'text' => 'Reportes',
+            'icon' => 'fas fa-chart-line', // Icono de gráfica para representar reportes
+            'url' => 'admin/reportes', // Ruta para la sección de reportes
+        ],
         
         ['header' => 'CONFIGURACION'],
         [
