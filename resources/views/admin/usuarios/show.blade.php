@@ -27,7 +27,13 @@
                 </div>
                 <div class="col-md-6">
                     <strong>Rol:</strong>
-                    <p>{{ $usuario->rol }}</p>
+                    <p>
+                        @if($usuario->roles->isNotEmpty())
+                            {{ $usuario->roles->pluck('name')->join(', ') }}
+                        @else
+                            Sin rol asignado
+                        @endif
+                    </p>
                 </div>
                 {{-- Agrega aquí más campos según tus necesidades --}}
             </div>

@@ -5,7 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
-
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
 class UserController extends Controller
 {
     // Método para mostrar la lista de usuarios
@@ -15,10 +16,10 @@ class UserController extends Controller
         return view('admin.usuarios.index', compact('usuarios'));
     }
 
-    // Método para mostrar el formulario de creación de usuario
     public function create()
     {
-        return view('admin.usuarios.create');
+        $roles = Role::all(); // O bien, obtén solo los nombres si es necesario
+        return view('admin.usuarios.create', compact('roles'));
     }
 
     // Método para almacenar un nuevo usuario en la base de datos

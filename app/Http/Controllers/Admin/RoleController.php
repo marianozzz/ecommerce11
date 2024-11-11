@@ -37,10 +37,14 @@ class RoleController extends Controller
             'permissions' => 'array|exists:permissions,id',
         ]);
 
-        $role = Role::create(['name' => $request->name]);
-        $role->syncPermissions($request->permissions); // Asigna permisos al rol
+       /* $role = Role::create(['name' => $request->name]);
+        $role->syncPermissions($request->permissions); // Asigna permisos al rol*/
 
-        return redirect()->route('admin.roles.index')->with('success', 'Role created successfully.');
+        $role = Role::create($request->all());
+
+        $role->permissions()->sync($request->permissions);
+
+        return redirect()->route('roles.index')->with('success', 'Role created successfully.');
     }
 
     /**

@@ -31,7 +31,7 @@ class PermissionController extends Controller
 
         Permission::create(['name' => $request->name]);
 
-        return redirect()->route('admin.permisos.index')->with('success', 'Permiso creado exitosamente.');
+        return redirect()->route('permisos.index')->with('success', 'Permiso creado exitosamente.');
     }
 
     public function edit(Permission $permiso)

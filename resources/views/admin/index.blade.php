@@ -67,7 +67,7 @@
                     <div class="icon">
                         <i class="fas fa-box-open"></i>
                     </div>
-                    <a href="{{ route('productos.index') }}" class="small-box-footer">
+                    <a href="{{ route('admin.productos.index') }}" class="small-box-footer">
                         Ver Productos <i class="fas fa-arrow-circle-right"></i>
                     </a>
                 </div>
