@@ -6,7 +6,7 @@
 <div class="container mt-5">
     <div class="row">
         <div class="col-md-4">
-            <img src="{{ asset('storage/' .$product->imagen) }}" alt="{{ $product->nombre }}" class="img-fluid">
+            <img src="{{ asset('storage/' . $product->imagen) }}" alt="{{ $product->nombre }}" class="img-fluid">
         </div>
         <div class="col-md-6">
             <h1>{{ $product->nombre }}</h1>
@@ -17,7 +17,20 @@
             <!-- Formulario para agregar el producto al carrito -->
             <form action="{{ route('cart.add', $product->id) }}" method="POST">
                 @csrf
-                <button type="submit" class="btn btn-success">Agregar al carrito</button>
+                <div class="row">
+                    <div class="col-md-2">
+                        <div class="form-group">
+                        <label for="cantidad">Cantidad</label>
+                        <select id="cantidad" name="cantidad" class="form-control">
+                            @for ($i = 1; $i <= $product->stock; $i++)
+                                <option value="{{ $i }}">{{ $i }}</option>
+                            @endfor
+                        </select>
+                    </div>
+                </div>
+            
+                </div>
+                <button type="submit" class="btn btn-success mt-4">Agregar al carrito</button>
             </form>
 
             <!-- Botón para volver a la tienda -->
@@ -26,3 +39,4 @@
     </div>
 </div>
 @endsection
+
