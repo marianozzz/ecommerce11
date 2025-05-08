@@ -79,9 +79,10 @@ class CompraController extends Controller
 
     public function store(Request $request)
 {
+    //dd($request);
     // Obtener el carrito de compras del usuario (ajústalo según tu implementación)
     $carrito = session()->get('cart', []);  // Asume que el carrito está almacenado en la sesión
-
+//dd($carrito);
     if (empty($carrito)) {
         return redirect()->back()->with('error', 'El carrito está vacío.');
     }
@@ -99,6 +100,7 @@ class CompraController extends Controller
         $venta->fecha = now();
         $venta->save();
 
+       // dd($venta);
         // Insertar los detalles de la venta en la tabla `detalle_ventas`
         foreach ($carrito as $item) {
             $detalleVenta = new DetalleVenta();
@@ -106,8 +108,11 @@ class CompraController extends Controller
             $detalleVenta->producto_id = $item['id'];
             $detalleVenta->cantidad = $item['cantidad'];
             $detalleVenta->precio = $item['precio'];
-         //   dd($detalleVenta);
+         
+          //  dd($detalleVenta);
             $detalleVenta->save();
+
+            
         }
 
         // Registrar la compra en la tabla `compras` (para el historial del usuario)
@@ -127,7 +132,7 @@ class CompraController extends Controller
 
     } catch (\Exception $e) {
         // Revertir la transacción en caso de error
-        DB::rollBack();
+       DB::rollBack();
         return redirect()->back()->with('error', 'Ocurrió un error al procesar la compra.');
     }
 }

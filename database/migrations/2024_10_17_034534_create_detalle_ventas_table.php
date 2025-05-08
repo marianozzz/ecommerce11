@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('detalle_ventas', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->onDelete('cascade'); // Relación con la venta
+            $table->foreignId('venta_id')->constrained()->onDelete('cascade'); // Relación con la venta
             $table->foreignId('producto_id')->constrained()->onDelete('cascade'); // Relación con el producto
             $table->integer('cantidad');
             $table->decimal('precio', 8, 2); // Precio del producto en la venta

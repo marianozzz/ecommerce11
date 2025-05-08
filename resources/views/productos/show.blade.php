@@ -10,7 +10,16 @@
         </div>
         <div class="col-md-6">
             <h1>{{ $product->nombre }}</h1>
-            <p>{{ $product->descripcion }}</p>
+            @php
+                $lineas = preg_split("/(?<=cm|kg|°|Sí|No|Gris Oscuro)\s+/u", $product->descripcion);
+            @endphp
+
+            <ul>
+                @foreach ($lineas as $linea)
+                    <li>{{ trim($linea) }}</li>
+                @endforeach
+            </ul>
+            
             <h3>${{ number_format($product->precio, 2) }}</h3>
             <p><strong>Stock:</strong> {{ $product->stock }} unidades disponibles</p>
             
