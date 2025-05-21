@@ -23,5 +23,9 @@ class RoleSeeder extends Seeder
         $permission2 = Permission::create(['name' => 'admin.categorias.index'])->syncRoles([$role1]);
         $permission3 = Permission::create(['name' => 'admin.ciudades.index'])->syncRoles([$role1]);
         $permission4 = Permission::create(['name' => 'admin.provincias.index'])->syncRoles([$role1]);
+
+
+
+        
     }
 }

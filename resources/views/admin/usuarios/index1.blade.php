@@ -1,14 +1,25 @@
-<div>
-  <div class="card">
+@extends('adminlte::page')
+
+@section('title', 'Lista de Usuarios')
+
+@section('content_header')
+    <h1>Lista de Usuarios</h1>
+@stop
+
+@section('content')
+    <div class="card">
         <div class="card-header">
             <a href="{{ route('admin.usuarios.create') }}" class="btn btn-primary">
                 <i class="fas fa-plus"></i> Agregar Usuario
             </a>
-            <input type="text" wire:model.live="search" class="form-control mt-4" placeholder="Buscar usuario">
         </div>
-
-        @if($usuarios->count())
         <div class="card-body">
+            @if(session('success'))
+                <div class="alert alert-success">
+                    {{ session('success') }}
+                </div>
+            @endif
+
             <table class="table table-bordered table-hover">
                 <thead>
                     <tr>
@@ -46,12 +57,16 @@
                 </tbody>
             </table>
         </div>
-        
         <div class="card-footer">
             {{ $usuarios->links() }} <!-- Paginación si estás usando paginate() en el controlador -->
         </div>
-          @else
-          <strong>No hay coincidencia</strong>
-          @endif
     </div>
-</div>
+@stop
+
+@section('css')
+    <link rel="stylesheet" href="/css/admin_custom.css">
+@stop
+
+@section('js')
+    <script> console.log('Página de usuarios'); </script>
+@stop

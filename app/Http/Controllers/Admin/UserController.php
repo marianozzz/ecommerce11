@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
+
 class UserController extends Controller
 {
     // Método para mostrar la lista de usuarios
@@ -48,16 +49,22 @@ class UserController extends Controller
     }
 
     // Método para mostrar el formulario de edición de usuario
-    public function edit($id)
+    public function edit(User $usuario)
     {
-        $usuario = User::findOrFail($id);
-        return view('admin.usuarios.edit', compact('usuario'));
+        $roles = Role::all();
+       // $usuario = User::findOrFail($id);
+
+       //  $roles = Role::all();
+
+       
+        return view('admin.usuarios.edit', compact('usuario','roles'));
     }
 
     // Método para actualizar la información de un usuario
-    public function update(Request $request, $id)
+    public function update(Request $request, User $usuario)
     {
-        $request->validate([
+        $usuario->roles()->sync($request->roles);
+     /*   $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users,email,' . $id,
         ]);
@@ -66,9 +73,9 @@ class UserController extends Controller
         $usuario->update([
             'name' => $request->name,
             'email' => $request->email,
-        ]);
+        ]);*/
 
-        return redirect()->route('admin.usuarios.index')->with('success', 'Usuario actualizado con éxito.');
+        return redirect()->route('admin.usuarios.edit',$usuario)->with('info','success', 'Usuario actualizado con éxito.');
     }
 
     // Método para eliminar un usuario

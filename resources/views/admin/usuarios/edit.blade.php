@@ -9,6 +9,13 @@
 @stop
 
 @section('content')
+@if(session('info'))
+
+<div class="alert alert-success">
+    <strong>{{session('info')}}</strong>
+</div>
+
+@endif
     <div class="card">
         <div class="card-header">
             <h3 class="card-title">Modificar información del usuario</h3>
@@ -31,11 +38,20 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="rol">Rol</label>
-                    <select name="rol" id="rol" class="form-control">
-                        <option value="admin" {{ old('rol', $usuario->rol) == 'admin' ? 'selected' : '' }}>Admin</option>
-                        <option value="user" {{ old('rol', $usuario->rol) == 'user' ? 'selected' : '' }}>Usuario</option>
-                    </select>
+                    <h2 class="h5">Listado de Roles</h2>
+                        @foreach ($roles as $role)
+                            <div class="form-check">
+                                <input 
+                                    type="checkbox" 
+                                    name="roles[]" 
+                                    value="{{ $role->name }}" 
+                                    class="form-check-input"
+                                    id="role_{{ $role->id }}"
+                                    {{ $usuario->hasRole($role->name) ? 'checked' : '' }}
+                                >
+                                <label class="form-check-label" for="role_{{ $role->id }}">{{ $role->name }}</label>
+                            </div>
+                        @endforeach
                 </div>
 
                 <button type="submit" class="btn btn-primary">Guardar cambios</button>
