@@ -54,9 +54,7 @@ class UserController extends Controller
         $roles = Role::all();
        // $usuario = User::findOrFail($id);
 
-       //  $roles = Role::all();
-
-       
+      
         return view('admin.usuarios.edit', compact('usuario','roles'));
     }
 
@@ -64,16 +62,6 @@ class UserController extends Controller
     public function update(Request $request, User $usuario)
     {
         $usuario->roles()->sync($request->roles);
-     /*   $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users,email,' . $id,
-        ]);
-
-        $usuario = User::findOrFail($id);
-        $usuario->update([
-            'name' => $request->name,
-            'email' => $request->email,
-        ]);*/
 
         return redirect()->route('admin.usuarios.edit',$usuario)->with('info','success', 'Usuario actualizado con éxito.');
     }

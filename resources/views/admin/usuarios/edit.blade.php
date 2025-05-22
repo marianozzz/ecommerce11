@@ -21,7 +21,7 @@
             <h3 class="card-title">Modificar información del usuario</h3>
         </div>
         <div class="card-body">
-            <form action="{{ route('admin.usuarios.update', $usuario->id) }}" method="POST">
+            <form action="{{ route('admin.usuarios.update', $usuario) }}" method="POST">
                 @csrf
                 @method('PUT')
 
@@ -44,7 +44,7 @@
                                 <input 
                                     type="checkbox" 
                                     name="roles[]" 
-                                    value="{{ $role->name }}" 
+                                    value="{{ $role->id }}" 
                                     class="form-check-input"
                                     id="role_{{ $role->id }}"
                                     {{ $usuario->hasRole($role->name) ? 'checked' : '' }}

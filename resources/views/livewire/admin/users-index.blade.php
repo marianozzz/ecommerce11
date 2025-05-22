@@ -30,7 +30,7 @@
                                 <a href="{{ route('admin.usuarios.show', $usuario->id) }}" class="btn btn-info btn-sm">
                                     <i class="fas fa-eye"></i> Ver
                                 </a>
-                                <a href="{{ route('admin.usuarios.edit', $usuario->id) }}" class="btn btn-warning btn-sm">
+                                <a href="{{ route('admin.usuarios.edit', $usuario) }}" class="btn btn-warning btn-sm">
                                     <i class="fas fa-edit"></i> Editar
                                 </a>
                                 <form action="{{ route('admin.usuarios.destroy', $usuario->id) }}" method="POST" style="display:inline;">
