@@ -44,8 +44,18 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a class="dropdown-item" href="{{ route('compras.index') }}">Mis Compras</a>
+                                    <a class="dropdown-item" href="{{ route('compras.index') }}">
+                                        <i class="fas fa-shopping-cart"></i>Mis Compras</a>
                                 </li>
+
+                                @can('admin.index')
+                                    <li>
+                                        <a class="dropdown-item" href="{{ route('admin.index') }}">
+                                            <i class="fas fa-tools"></i> Dashboard Administrador
+                                        </a>
+                                    </li>
+                                @endcan
+
                                 <li><hr class="dropdown-divider"></li>
                                 <li>
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-inline">
